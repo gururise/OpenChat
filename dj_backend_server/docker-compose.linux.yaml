@@ -88,7 +88,7 @@ services:
     image: adminer
     container_name: oc_adminer
     ports:
-      - "8080:8080"
+      - "8085:8085"
     environment:
       ADMINER_DEFAULT_SERVER: db  # Change this to match your database server name
     depends_on:
