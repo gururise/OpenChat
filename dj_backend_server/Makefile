@@ -23,7 +23,7 @@ ifndef venv
 		@echo $(shell tput setaf 2)"Creating a virtual environment..."$(shell tput sgr0)
 		python3 -m venv venv
 	else
-		@echo $(shell tput setaf 2)"Creating a virtual environment..."$(shell tput sgr0)
+		@echo $$(tput setaf 2)"Creating a virtual environment..."$$(tput sgr0)
 		python3 -m venv venv
 	endif
 endif
@@ -75,7 +75,7 @@ endif
 # celery -A dj_backend_server worker --loglevel=info &
 dev-start:
 	$(DOCKER_COMPOSE) -f docker-compose.linux.yaml up -d
-	@echo $(shell tput setaf 3)"Waiting for 20 seconds before opening the browser..."$(shell tput sgr0)
+	@echo $$(tput setaf 3)"Waiting for 20 seconds before opening the browser..."$$(tput sgr0)
 	sleep 20
 	$(OPEN_COMMAND) http://0.0.0.0:8000/	
 
