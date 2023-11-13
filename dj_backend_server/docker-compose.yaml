@@ -3,7 +3,7 @@ version: '3.9'
 services:
   mysql:
     restart: unless-stopped
-    platform: linux/arm64/v8
+    platform: linux/x86_64
     image: "mysql:8"
     ports:
       - "3307:3306"
@@ -55,7 +55,7 @@ services:
   adminer:
     image: adminer
     ports:
-      - "8080:8080"
+      - "8085:8085"
     environment:
       ADMINER_DEFAULT_SERVER: db  # Change this to match your database server name
     depends_on:
