@@ -43,13 +43,12 @@ Before you begin, make sure you have the following installed:
    pip install -r requirements.txt
    ```
 
-## Common Issues
+### Local VSCODE Development
+   ```
+   make dev-start
+   ```
 
-If database migrations fail to run for any reason, you can use the following command to re-run the migrations within the Docker container:
-
-```bash
-make force_migrate
-```
+   Then run the celery worker from the debug menu, and then run the django server from debug.
 
 ### Running Migrations in Docker Container
 
@@ -58,41 +57,6 @@ To address migration issues within the Docker container, a new Makefile target n
 ### Conditional Docker Compose Files
 
 The Makefile now includes logic to dynamically select the appropriate Docker Compose file based on the underlying system architecture. This decision is made between two options: `docker-compose.yaml` for non-Linux environments and `docker-compose.linux.yaml` for Linux systems. This ensures that the correct Docker Compose configuration is utilized according to the specific environment in use.
-
-## Running Migrations
-
-To run migrations inside the Docker container, you can use the following command:
-
-```bash
-make migrate
-
-## Configuration
-
-Before running the project, you need to configure your environment variables. Rename the `.env.example` file to `.env` and fill in the necessary values for your environment.
-
-## Running the Project
-
-To start the Django development server along with Celery:
-
-```bash
-python manage.py runserver
-```
-
-To start the Celery worker:
-
-```bash
-export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
-export DISABLE_SPRING=true
-celery -A dj_backend_server worker --loglevel=info
-```
-
-## Running Migrations
-
-To apply database migrations:
-
-```bash
-python manage.py migrate
-```
 
 ## Environment Variables
 
