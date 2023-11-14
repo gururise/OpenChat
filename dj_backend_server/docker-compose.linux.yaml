@@ -53,7 +53,7 @@ services:
       - mysql
       - web
       - redis
-      - celery_worker
+#      - celery_worker
 
   web:
     build:
