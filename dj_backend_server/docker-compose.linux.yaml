@@ -84,34 +84,34 @@ services:
     networks:
       - openchat_network
 
-  adminer:
-    image: adminer
-    container_name: oc_adminer
-    ports:
-      - "8085:8085"
-    environment:
-      ADMINER_DEFAULT_SERVER: db  # Change this to match your database server name
-    depends_on:
-      - mysql
-    networks:
-      - openchat_network
+  # adminer:
+  #   image: adminer
+  #   container_name: oc_adminer
+  #   ports:
+  #     - "8085:8085"
+  #   environment:
+  #     ADMINER_DEFAULT_SERVER: db  # Change this to match your database server name
+  #   depends_on:
+  #     - mysql
+  #   networks:
+  #     - openchat_network
   
-  celery_worker:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: oc_celery
-    volumes:
-      - ./website_data_sources:/app/website_data_sources 
-      - ./:/app/
-      # - ./llama-2-7b-chat.ggmlv3.q4_K_M.bin:/app/llama-2-7b-chat.ggmlv3.q4_K_M.bin:ro
-    depends_on:
-      - web
-    env_file:
-      - .env.docker
-    command: celery -A dj_backend_server worker --loglevel=info
-    networks:
-      - openchat_network
+  # celery_worker:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   container_name: oc_celery
+  #   volumes:
+  #     - ./website_data_sources:/app/website_data_sources 
+  #     - ./:/app/
+  #     # - ./llama-2-7b-chat.ggmlv3.q4_K_M.bin:/app/llama-2-7b-chat.ggmlv3.q4_K_M.bin:ro
+  #   depends_on:
+  #     - web
+  #   env_file:
+  #     - .env.docker
+  #   command: celery -A dj_backend_server worker --loglevel=info
+  #   networks:
+  #     - openchat_network
 
   redis:
     restart: unless-stopped
